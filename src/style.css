@@ -1,0 +1,115 @@
+/* ══════════════════════════════════════════════════════════════════════
+   CSS Layer order — ensures Tailwind utilities ALWAYS beat PrimeVue.
+   PrimeVue injects its styles into the "primevue" layer (configured
+   in main.js). By placing tailwind-utilities AFTER primevue,
+   classes like text-white, bg-brand-950, etc. will always win.
+   ══════════════════════════════════════════════════════════════════════ */
+@layer tailwind-base, primevue, tailwind-utilities;
+
+@layer tailwind-base {
+  @tailwind base;
+}
+
+@layer tailwind-utilities {
+  @tailwind components;
+  @tailwind utilities;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Global
+   ══════════════════════════════════════════════════════════════════════ */
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Leaflet × Tailwind Preflight fix
+   Tailwind Preflight sets `img { max-width:100%; height:auto }` which
+   breaks Leaflet tile rendering. Override specifically inside the map.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.leaflet-container img {
+  max-width: none !important;
+  max-height: none !important;
+  height: auto;
+}
+
+.leaflet-pane,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-tile-container,
+.leaflet-pane > svg,
+.leaflet-pane > canvas,
+.leaflet-zoom-box,
+.leaflet-image-layer,
+.leaflet-layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* Do NOT set height here — let Tailwind's h-72 / md:h-[420px] control it.
+   Setting height:100% in unlayered CSS overrides the layered Tailwind utility
+   and collapses the map to 0px when the parent has no explicit height. */
+.leaflet-container {
+  width: 100%;
+  z-index: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Staggered fade-in for child elements
+   ══════════════════════════════════════════════════════════════════════ */
+
+.stagger-children > * {
+  opacity: 0;
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.10s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.20s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.30s; }
+.stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger-children > *:nth-child(8) { animation-delay: 0.40s; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   PrimeVue DataTable overrides for brand consistency
+   ══════════════════════════════════════════════════════════════════════ */
+
+.p-datatable .p-datatable-thead > tr > th {
+  background: #14352e !important;
+  color: #d5efe8 !important;
+  font-weight: 600 !important;
+  font-size: 0.8rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  border-bottom: none !important;
+}
+
+.p-datatable .p-datatable-tbody > tr {
+  transition: background 0.15s ease;
+}
+.p-datatable .p-datatable-tbody > tr:hover {
+  background: #eef8f5 !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Glassmorphism utility
+   ══════════════════════════════════════════════════════════════════════ */
+
+.glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
