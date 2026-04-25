@@ -54,7 +54,7 @@
       <nav class="sticky top-0 z-50 bg-brand-950/95 backdrop-blur-md border-b border-brand-800/50">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <div class="flex items-center gap-2.5">
-            <img src="/favicon.png" alt="Safra na Mão" class="w-7 h-7 rounded-md" />
+            <img src="/logo-safra-na-mao.png" alt="Safra na Mão" class="w-7 h-7" />
             <span class="text-white font-bold text-base tracking-tight">Safra na Mão</span>
           </div>
           <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-400/20 text-accent-300 text-xs font-semibold uppercase tracking-wider">
@@ -394,7 +394,7 @@
         <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8">
           <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-2.5">
-              <img src="/favicon.png" alt="Safra na Mão" class="w-5 h-5 rounded-sm" />
+              <img src="/logo-safra-na-mao.png" alt="Safra na Mão" class="w-5 h-5" />
               <span class="text-white font-bold text-sm tracking-tight">Safra na Mão</span>
             </div>
             <p class="text-xs text-center sm:text-right leading-relaxed max-w-md">
